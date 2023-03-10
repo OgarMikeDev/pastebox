@@ -45,7 +45,6 @@ public class PasteBoxRepositoryMap implements PasteBoxRepository {
 
     @Override
     public void add(PasteBoxEntity pasteBoxEntity) {
-        vault
-                .put(pasteBoxEntity.getHash(), pasteBoxEntity);
+        vault.put(pasteBoxEntity.getHash(), pasteBoxEntity);
     }
 }
