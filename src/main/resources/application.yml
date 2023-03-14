@@ -1,4 +1,7 @@
-app:
-  host: http://pastebox.sendel.ru
-  public_list_size: 10
-
+#app:
+#  host: http://pastebox.sendel.ru
+#  public_list_size: 10
+  spring.datasource.url: jdbc:mysql://localhost:3306/paste_box
+  spring.datasource.username: root
+  spring.datasource.password: Misha06122000)))
+  spring.jpa.hibernate.ddl-auto: create-drop

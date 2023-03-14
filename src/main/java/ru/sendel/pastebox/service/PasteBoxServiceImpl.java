@@ -1,6 +1,7 @@
 package ru.sendel.pastebox.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import ru.sendel.pastebox.api.request.PasteBoxRequest;
@@ -9,11 +10,12 @@ import ru.sendel.pastebox.api.response.PasteBoxResponse;
 import ru.sendel.pastebox.api.response.PasteBoxUrlResponse;
 import ru.sendel.pastebox.repository.PasteBoxEntity;
 import ru.sendel.pastebox.repository.PasteBoxRepository;
+import ru.sendel.pastebox.repository.PasteBoxRepositoryJpa;
+//import ru.sendel.pastebox.repository.PasteBoxRepositoryJpa;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +26,9 @@ public class PasteBoxServiceImpl implements PasteBoxService {
     private int publicListSize = 10;
 
     private final PasteBoxRepository repository;
+
+    @Autowired
+    private final PasteBoxRepositoryJpa repositoryJpa;
 
     private AtomicInteger idGenerator = new AtomicInteger();
 
@@ -61,6 +66,7 @@ public class PasteBoxServiceImpl implements PasteBoxService {
         pasteBoxEntity.setLifeTime(LocalDateTime.now().plusSeconds(
                 request.getExpirationTimeSeconds()));
         repository.add(pasteBoxEntity);
+      repositoryJpa.save(pasteBoxEntity);
 
 
         return new PasteBoxUrlResponse(host + "/" + pasteBoxEntity.getHash());
