@@ -43,8 +43,7 @@ public class PasteBoxServiceTest {
         when(pasteBoxRepository.getByHash("1"))
                 .thenReturn(entity);
 
-        PasteBoxResponse expected =
-                new PasteBoxResponse("08", true);
+        PasteBoxResponse expected = new PasteBoxResponse("08", true);
         PasteBoxResponse actual = pasteBoxService.getByHash("1");
 
         assertEquals(expected, actual);

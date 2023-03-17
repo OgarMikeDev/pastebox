@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class PasteBoxController {
-    private  final PasteBoxService pasteBoxService;
+    private final PasteBoxService pasteBoxService;
 
     @GetMapping("/")
     public Collection<PasteBoxResponse> getPublicPasteList() {
